@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Luyện nghe phỏng vấn tiệm báo</title>
+<style>
+:root{--bg:#fafaf7;--fg:#1f2328;--mut:#6b7280;--card:#fff;--bd:#e5e7eb;--ac:#c2410c;--hl:#ffedd5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16181d;--fg:#e8e8e8;--mut:#9ca3af;--card:#1f2229;--bd:#323640;--ac:#fb923c;--hl:#3b2a1a}}
+:root[data-theme="dark"]{--bg:#16181d;--fg:#e8e8e8;--mut:#9ca3af;--card:#1f2229;--bd:#323640;--ac:#fb923c;--hl:#3b2a1a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:12px 14px 40px}
+h1{font-size:18px;margin:6px 0 10px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;z-index:5;border-bottom:1px solid var(--bd)}
+select,button{font:inherit;color:var(--fg);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px 10px}
+select{width:100%;margin-bottom:8px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+button.p{background:var(--ac);border-color:var(--ac);color:#fff}
+label{font-size:14px;color:var(--mut)}
+input[type=range]{flex:1;min-width:100px}
+#msg{font-size:13px;color:var(--mut);margin:6px 0 0}
+ol{list-style:none;margin:12px 0;padding:0}
+li{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer}
+li.on{background:var(--hl);border-color:var(--ac)}
+li .n{color:var(--mut);min-width:26px;text-align:right;font-size:14px}
+li .t{flex:1;font-size:19px;line-height:2}
+rt{font-size:.5em}
+.a{font-size:15px;line-height:1.9;color:var(--ac);margin-top:2px}
+.e{color:var(--mut);font-size:13px}
+li .ic{color:var(--ac)}
+</style></head><body><div class="wrap">
+<h1>🔊 Luyện nghe phỏng vấn tiệm báo</h1>
+<div class="bar">
+<select id="sel"></select>
+<div class="row"><button class="p" id="all">▶ Đọc cả bài</button><button id="stop">■ Dừng</button>
+<label>Tốc độ <input type="range" id="rate" min="0.5" max="1.2" step="0.1" value="0.8"> <span id="rv">0.8</span></label></div>
+<div class="row" style="margin-top:6px"><label><input type="checkbox" id="fu" checked> Hiện furigana</label>
+<label><input type="checkbox" id="ans" checked> Đọc cả câu trả lời mẫu</label>
+<label>Nghỉ giữa câu <select id="gap" style="width:auto;margin:0"><option value="500">0,5 giây</option><option value="1500" selected>1,5 giây</option><option value="3000">3 giây</option></select></label></div>
+<div id="msg"></div></div>
+<ol id="list"></ol></div>
+<script>
+const D=[{"h": "Phần 1: Thông tin hồ sơ, cá nhân", "q": ["自己紹介をお願いします。", "{送|おく}り{出|だ}し{機関|きかん}の{名前|なまえ}は{何|なん}ですか。", "{行|い}く{日本語学校|にほんごがっこう}の{名前|なまえ}は{何|なん}ですか。{午前|ごぜん}クラスですか。", "{日本語学校|にほんごがっこう}の{最寄|もよ}り{駅|えき}はどこですか。", "{生年月日|せいねんがっぴ}はいつですか。{今|いま}、{何歳|なんさい}ですか。", "ベトナムでバイクの{免許|めんきょ}を{持|も}っていますか。いつ{取|と}りましたか。", "ベトナムでどんな{資格|しかく}を{持|も}っていますか。", "ベトナムでバイクの{運転経験|うんてんけいけん}はありますか。", "{両親|りょうしん}は{新聞配達|しんぶんはいたつ}の{留学|りゅうがく}に{賛成|さんせい}していますか。", "サポート{費|ひ}やプログラムの{条件|じょうけん}を{理解|りかい}して、{確認書|かくにんしょ}を{出|だ}しましたか。"], "a": ["はじめまして。ベトナムから来ました。どうぞよろしくお願いします。", "ALOHAです。", "はい、{午前|ごぜん}クラスです。", "{最寄|もよ}り{駅|えき}は{高円寺駅|こうえんじえき}です。", "", "", "{高校|こうこう}を{卒業|そつぎょう}しました。", "はい、あります。{大丈夫|だいじょうぶ}です。", "はい、{賛成|さんせい}しています。", "はい、しっかり{理解|りかい}して{提出|ていしゅつ}しました。"]}, {"h": "Phần 2: Trình độ tiếng Nhật, ngày giờ", "q": ["{今|いま}、{日本語|にほんご}はみんなの{日本語|にほんご}の{第何課|だいなんか}まで{勉強|べんきょう}しましたか。", "{日本語能力試験|にほんごのうりょくしけん}N5は{合格|ごうかく}しましたか。", "{今日|きょう}は{何月何日|なんがつなんにち}ですか。", "{今日|きょう}は{何曜日|なんようび}ですか。", "{今|いま}、{何時|なんじ}ですか。", "{朝|あさ}は{何時|なんじ}に{起|お}きますか。", "{夜|よる}は{何時|なんじ}に{寝|ね}ますか。", "{毎日|まいにち}{何時間|なんじかん}ぐらい{寝|ね}ますか。{体調|たいちょう}は{大丈夫|だいじょうぶ}ですか。"], "a": ["", "", "{十一月|じゅういちがつ}{五日|いつか}です。", "{木曜日|もくようび}です。", "", "", "", "{体調管理|たいちょうかんり}は{大丈夫|だいじょうぶ}です。"]}, {"h": "Phần 3: Điều kiện công việc, cam kết", "q": ["1{年間|ねんかん}、{途中|とちゅう}で{辞|や}めずに{新聞配達|しんぶんはいたつ}を{続|つづ}けられますか。", "{体|からだ}は{健康|けんこう}ですか。{過去|かこ}に{交通事故|こうつうじこ}はありましたか。", "{部屋|へや}は2{人部屋|ひとべや}や{共同|きょうどう}トイレ・シャワーですが、{大丈夫|だいじょうぶ}ですか。", "{仕事|しごと}は{夜中|よなか}と{学校|がっこう}の{後|あと}で{毎日|まいにち}あって、きついですが、{大丈夫|だいじょうぶ}ですか。", "{日本|にほん}の{免許試験|めんきょしけん}は90{点|てん}{必要|ひつよう}です。{勉強|べんきょう}して{合格|ごうかく}するまで{受|う}けますか。", "{免許|めんきょ}プログラム{費用|ひよう}や{面接費用|めんせつひよう}の{支払|しはら}いは{理解|りかい}して、{大丈夫|だいじょうぶ}ですか。", "{日本語学校|にほんごがっこう}を{卒業|そつぎょう}した{後|あと}はどうしますか。"], "a": ["はい、{絶対|ぜったい}に{辞|や}めません。", "はい、とても{健康|けんこう}です。{過去|かこ}に{交通事故|こうつうじこ}もありません。", "はい、{全|まった}く{問題|もんだい}ありません。ルールを{守|まも}って{生活|せいかつ}します。", "はい、{大丈夫|だいじょうぶ}です。{一生懸命|いっしょうけんめい}{頑張|がんば}ります。", "はい、{事前|じぜん}にしっかり{勉強|べんきょう}して、{合格|ごうかく}するまで{継続|けいぞく}して{受験|じゅけん}します。", "はい、{問題|もんだい}ありません。", ""]}];
+const $=id=>document.getElementById(id);
+let cur=0,tok=0,voice=null;
+const plain=s=>s.replace(/\{([^|}]+)\|[^}]+\}/g,'$1');
+const rub=s=>s.replace(/\{([^|}]+)\|([^}]+)\}/g,'<ruby>$1<rt>$2</rt></ruby>');
+function pick(){try{const v=speechSynthesis.getVoices().filter(x=>/^ja/i.test(x.lang));voice=v[0]||null;$('msg').textContent=voice?'Giọng đọc: '+voice.name:'Máy chưa có giọng tiếng Nhật. Hãy cài giọng Japanese trong cài đặt thiết bị (Text-to-speech).'}catch(e){$('msg').textContent='Trình duyệt này không hỗ trợ đọc giọng nói.'}}
+try{speechSynthesis.onvoiceschanged=pick}catch(e){}
+function say(text,done){const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';if(voice)u.voice=voice;u.rate=+$('rate').value;u.onend=done;u.onerror=done;speechSynthesis.speak(u)}
+function mark(i){document.querySelectorAll('li').forEach((e,k)=>e.classList.toggle('on',k===i))}
+function stop(){tok++;try{speechSynthesis.cancel()}catch(e){}mark(-1)}
+function seq(i,t,next){mark(i);say(plain(D[cur].q[i]),()=>{if(t!==tok)return;const a=D[cur].a[i];if($('ans').checked&&a){setTimeout(()=>{if(t===tok)say(plain(a),()=>next())},+$('gap').value)}else next()})}
+function one(i){stop();const t=tok;seq(i,t,()=>{if(t===tok)mark(-1)})}
+function all(){stop();const t=++tok;let i=0;(function nx(){if(t!==tok||i>=D[cur].q.length){if(t===tok)mark(-1);return}const k=i++;document.querySelectorAll('li')[k].scrollIntoView({block:'center',behavior:'smooth'});seq(k,t,()=>setTimeout(nx,+$('gap').value))})()}
+function render(){stop();const f=$('fu').checked;$('list').innerHTML=D[cur].q.map((q,i)=>{const a=D[cur].a[i];return '<li data-i="'+i+'"><span class="n">'+(i+1)+'.</span><span class="t">'+(f?rub(q):plain(q))+'<div class="a">'+(a?(f?rub(a):plain(a)):'<span class="e">(tự trả lời theo thông tin của em)</span>')+'</div></span><span class="ic">🔊</span></li>'}).join('')}
+$('sel').innerHTML=D.map((l,i)=>'<option value="'+i+'">'+l.h+'</option>').join('');
+$('sel').onchange=e=>{cur=+e.target.value;render();scrollTo(0,0)};
+$('list').onclick=e=>{const li=e.target.closest('li');if(li)one(+li.dataset.i)};
+$('all').onclick=all;$('stop').onclick=stop;$('fu').onchange=render;
+$('rate').oninput=e=>{$('rv').textContent=e.target.value};
+render();pick();
+</script></body></html>
